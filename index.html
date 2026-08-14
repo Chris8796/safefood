@@ -1,126 +1,62 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Basketball Life Prototype v0.5</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Basketball Life Prototype v0.6</title>
 <style>
-:root{--bg:#0b0f14;--card:#141a23;--line:#2b3544;--text:#eef3f8;--muted:#9aa8b8;--accent:#f59e0b;--blue:#60a5fa;--violet:#c084fc}
-*{box-sizing:border-box}
-body{margin:0;background:linear-gradient(#090c11,#101722);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}
-.wrap{max-width:1180px;margin:auto;padding:18px}.header{margin-bottom:14px}.header h1{margin:0;font-size:26px}.header p{margin:5px 0;color:var(--muted);font-size:13px}
-.layout{display:grid;grid-template-columns:390px 1fr;gap:14px}@media(max-width:860px){.layout{grid-template-columns:1fr}}
-.card{background:rgba(20,26,35,.97);border:1px solid var(--line);border-radius:15px;padding:15px;margin-bottom:14px}
-h2{font-size:16px;margin:0 0 11px}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
-label{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
-input,select,button{width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:#0e141d;color:var(--text);font-size:14px}
-button{font-weight:700;cursor:pointer}.primary{background:var(--accent);color:#1c1305;border:0}.secondary{background:#202837}.ghost{background:#111824}
-.note{background:#111824;border-left:3px solid var(--accent);padding:9px 10px;border-radius:8px;font-size:12px;color:#cbd5e1;margin-bottom:10px}
-.player-list{display:grid;gap:10px}.player-card{border:1px solid var(--line);background:#0e141d;border-radius:12px;padding:12px}.player-head{display:flex;justify-content:space-between;gap:10px}.player-name{font-weight:900}.score{font-weight:900;color:var(--accent)}
-.small{font-size:12px;color:var(--muted)}.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{padding:5px 8px;border:1px solid var(--line);background:#202837;border-radius:999px;font-size:12px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}@media(max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{border:1px solid var(--line);background:#0e141d;border-radius:11px;padding:9px}.stat b{display:block;font-size:19px}
-.bar{height:6px;background:#090d13;border-radius:99px;overflow:hidden;margin-top:5px}.fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--accent))}
-hr{border:0;border-top:1px solid var(--line);margin:13px 0}.hidden{display:none!important}.top{display:flex;justify-content:space-between;gap:12px}.ovr{font-size:36px;font-weight:900}
-.log{height:320px;overflow:auto;border:1px solid var(--line);background:#0b1017;border-radius:11px;padding:11px}.log p{margin:0 0 10px;line-height:1.55}
-.blue{color:var(--blue);font-weight:800}.violet{color:var(--violet);font-weight:800}.dice{display:inline-block;padding:1px 6px;background:#202837;border-radius:6px;font-weight:800}
+:root{--bg:#0b0f14;--card:#151b24;--line:#2a3442;--txt:#eef3f8;--muted:#96a3b4;--accent:#f59e0b;--blue:#60a5fa;--green:#34d399;--violet:#c084fc;--red:#fb7185}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(#090c11,#111826);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}.wrap{max-width:1120px;margin:auto;padding:18px}.card{background:rgba(21,27,36,.97);border:1px solid var(--line);border-radius:16px;padding:15px;margin-bottom:14px}.grid{display:grid;grid-template-columns:390px 1fr;gap:14px}@media(max-width:860px){.grid{grid-template-columns:1fr}}h1{font-size:27px;margin:0 0 4px}h2{font-size:17px;margin:0 0 11px}.sub,.small{color:var(--muted);font-size:12px}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}label{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}input,select,button{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0e141d;color:var(--txt);font-size:14px}button{font-weight:800;cursor:pointer}.primary{background:var(--accent);border:0;color:#1b1305}.secondary{background:#202938}.ghost{background:#111824}.hidden{display:none!important}.note{background:#111824;border-left:3px solid var(--accent);padding:9px 10px;border-radius:8px;font-size:12px;color:#cbd5e1;margin-bottom:10px}.players{display:grid;gap:10px}.player{background:#0f151e;border:1px solid var(--line);border-radius:12px;padding:12px}.head{display:flex;justify-content:space-between;gap:12px}.name{font-weight:900}.score{font-weight:900;color:var(--accent)}.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{font-size:12px;padding:5px 8px;border-radius:999px;border:1px solid var(--line);background:#202938}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}@media(max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}}.stat{background:#0f151e;border:1px solid var(--line);border-radius:11px;padding:9px}.stat b{display:block;font-size:19px}.bar{height:6px;background:#090d13;border-radius:99px;overflow:hidden;margin-top:5px}.fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--accent))}.careerTop{display:flex;justify-content:space-between;gap:12px}.ovr{font-size:36px;font-weight:900}.stage{font-size:22px;font-weight:900}.choiceGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}@media(max-width:620px){.choiceGrid{grid-template-columns:1fr}}.choice{padding:14px;text-align:left;background:#141d2a}.choice span{display:block;font-size:12px;color:var(--muted);margin-top:4px}.log{max-height:380px;overflow:auto;background:#0b1017;border:1px solid var(--line);border-radius:12px;padding:11px}.log p{margin:0 0 10px;line-height:1.55}.blue{color:var(--blue);font-weight:800}.violet{color:var(--violet);font-weight:800}.green{color:var(--green);font-weight:800}.red{color:var(--red);font-weight:800}.dice{display:inline-block;background:#202938;padding:1px 6px;border-radius:6px;font-weight:800}hr{border:0;border-top:1px solid var(--line);margin:13px 0}
 </style>
 </head>
-<body>
-<div class="wrap">
-  <div class="header">
-    <h1>🏀 Basketball Life — Prototype v0.5</h1>
-    <p>固定 16 歲 HBL 起步｜球員本體與 Seed 分離｜開始人生後才進入模擬</p>
-  </div>
+<body><div class="wrap">
+<div><h1>🏀 Basketball Life — Prototype v0.6</h1><div class="sub">先測 HBL 三年流程：建立球員 → 選 Seed → 高一 / 高二 / 高三 → 年度發展 → 事件 → 賽季結果</div></div>
 
-  <div id="setupView" class="layout">
-    <div>
-      <div class="card">
-        <h2>① 球員基本資料 / 靜態條件</h2>
-        <div class="note">所有球員固定以 <b>16 歲、HBL</b> 開始。這區只決定球員本身，不使用 Seed。</div>
-        <div class="row">
-          <div><label>球員名稱</label><input id="name" value="Chris"></div>
-          <div><label>初始位置</label><select id="pos"><option>PG</option><option>SG</option><option selected>SF</option><option>PF</option><option>C</option></select></div>
-        </div>
-        <div class="row">
-          <div><label>身高 cm</label><input id="height" type="number" value="203"></div>
-          <div><label>體重 kg</label><input id="weight" type="number" value="98"></div>
-        </div>
-        <div class="row">
-          <div><label>臂展 cm</label><input id="wingspan" type="number" value="216"></div>
-          <div><label>體型</label><select id="body"><option>精瘦</option><option selected>標準</option><option>壯碩</option><option>厚重</option></select></div>
-        </div>
-        <div class="row">
-          <div><label>慣用手</label><select id="hand"><option>右手</option><option>左手</option></select></div>
-          <div><label>球員類型傾向</label><select id="style"><option value="balanced">自由 / 均衡</option><option value="handler">持球核心</option><option value="shooter">投射型</option><option value="defender">防守型</option><option value="big">長人核心</option></select></div>
-        </div>
-        <button class="primary" onclick="generatePlayer()">生成球員能力</button>
-      </div>
+<div id="setup" class="grid" style="margin-top:14px">
+<div>
+<div class="card"><h2>① 球員基本資料</h2><div class="note">球員固定從 HBL 高一開始；這區只決定球員本身。</div>
+<div class="row"><div><label>姓名</label><input id="name" value="Chris"></div><div><label>位置</label><select id="pos"><option>PG</option><option>SG</option><option selected>SF</option><option>PF</option><option>C</option></select></div></div>
+<div class="row"><div><label>身高 cm</label><input id="height" type="number" value="203"></div><div><label>體重 kg</label><input id="weight" type="number" value="98"></div></div>
+<div class="row"><div><label>臂展 cm</label><input id="wingspan" type="number" value="216"></div><div><label>體型</label><select id="body"><option>精瘦</option><option selected>標準</option><option>壯碩</option><option>厚重</option></select></div></div>
+<div class="row"><div><label>慣用手</label><select id="hand"><option>右手</option><option>左手</option></select></div><div><label>打法傾向</label><select id="style"><option value="balanced">自由 / 均衡</option><option value="handler">持球核心</option><option value="shooter">投射型</option><option value="defender">防守型</option><option value="big">長人核心</option></select></div></div>
+<button class="primary" onclick="generatePlayer()">生成球員</button></div>
+<div class="card"><h2>② 事件種子碼</h2><div class="note">Seed 不改變球員能力，只控制本輪特殊事件與分支。</div><input id="seed" value="THREADS-2026"></div>
+</div>
+<div><div class="card"><h2>③ 生成過的球員</h2><div id="players" class="players"><div class="small">尚未生成球員。</div></div></div></div>
+</div>
 
-      <div class="card">
-        <h2>② 種子碼 Seed</h2>
-        <div class="note">Seed 只影響特殊事件、事件順序與事件分支，不改變球員能力、位置或體格。</div>
-        <label>事件種子碼</label>
-        <input id="seed" value="THREADS-2026">
-      </div>
-    </div>
+<div id="career" class="hidden" style="margin-top:14px">
+<div class="card"><div class="careerTop"><div><div id="stage" class="stage">HBL 高一</div><h2 id="careerTitle"></h2><div id="chips" class="chips"></div></div><div style="text-align:right"><div class="small">OVR</div><div id="ovr" class="ovr">--</div></div></div><hr><div id="stats" class="stats"></div></div>
 
-    <div>
-      <div class="card">
-        <h2>③ 生成過的球員</h2>
-        <div id="generatedPlayers" class="player-list"><div class="small">尚未生成球員。</div></div>
-      </div>
-    </div>
-  </div>
+<div id="choiceCard" class="card"><h2>本年度發展方向</h2><div class="note">你決定重點，系統用骰子完成 3 次成長檢定；不是手動一項一項農能力。</div><div class="choiceGrid">
+<button class="choice" onclick="chooseFocus('handle')">🪄 強化持球<span>控球、傳球、籃球 IQ</span></button>
+<button class="choice" onclick="chooseFocus('shoot')">🎯 強化投射<span>三分、中距離、罰球</span></button>
+<button class="choice" onclick="chooseFocus('physical')">💪 強化身體<span>速度、力量、終結</span></button>
+<button class="choice" onclick="chooseFocus('defense')">🛡️ 強化防守<span>外線防守、內線防守、籃板</span></button>
+<button class="choice" onclick="chooseFocus('balanced')">🧠 全面發展<span>隨機能力，多樣但較不集中</span></button>
+</div></div>
 
-  <div id="careerView" class="hidden">
-    <div class="card">
-      <div class="top">
-        <div><h2 id="careerTitle">生涯</h2><div id="careerChips" class="chips"></div></div>
-        <div style="text-align:right"><div class="small">OVR</div><div id="careerOVR" class="ovr">--</div></div>
-      </div>
-      <hr>
-      <div id="careerStats" class="stats"></div>
-      <hr>
-      <div class="row">
-        <button class="secondary" onclick="randomTrain()">🎯 隨機訓練一次</button>
-        <button class="primary" onclick="simulateSeason()">模擬下一季 🎲</button>
-      </div>
-      <button class="ghost" onclick="backToSetup()">← 回球員建立頁</button>
-    </div>
-    <div class="card">
-      <h2>生涯紀錄</h2>
-      <div id="careerLog" class="log"></div>
-    </div>
-  </div>
+<div id="resultCard" class="card hidden"><h2>年度結果</h2><div id="seasonSummary"></div><button id="continueBtn" class="primary" onclick="continueCareer()">進入下一學年</button></div>
+<div class="card"><h2>生涯紀錄</h2><div id="log" class="log"></div><button class="ghost" style="margin-top:10px" onclick="backSetup()">← 回球員建立頁</button></div>
 </div>
 
 <script>
-var roster=[];
-var current=null;
-var eventRand=Math.random;
-var playerId=1;
-var skillNames={finish:"終結",mid:"中距離",three:"三分",handle:"控球",pass:"傳球",defense:"外線防守",interior:"內線防守",rebound:"籃板",speed:"速度",strength:"力量",iq:"籃球IQ"};
-function E(id){return document.getElementById(id)}
-function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
-function randInt(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function avg(arr){var s=0;for(var i=0;i<arr.length;i++)s+=arr[i];return s/arr.length}
-function hashSeed(str){var h=2166136261>>>0;for(var i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function d100(){return Math.floor(eventRand()*100)+1}
-function overall(p){var s=p.skills;return Math.round(avg([s.finish,s.mid,s.three,s.handle,s.pass,s.defense,s.interior,s.rebound,s.speed,s.strength,s.iq]))}
-function achievementScore(p){return Math.max(0,Math.round(overall(p)*0.8+(p.seasons||0)*2+(p.titles||0)*12+(p.mvp||0)*18))}
-function archetype(p){var s=p.skills,h=p.height;if(h>=215&&s.handle>=78&&s.three>=78&&s.interior>=78)return "獨角獸";if(h>=205&&s.pass>=84&&s.iq>=84&&s.rebound>=75)return "全能組織中鋒";if(h>=198&&s.handle>=84&&s.pass>=82)return "控球前鋒";if(h>=195&&s.handle>=88&&s.pass>=84)return "大型持球核心";if(s.three>=84&&s.defense>=82)return "3&D";if(s.pass>=88&&s.handle>=86)return "進攻發動機";if(s.interior>=88&&s.rebound>=86)return "護框中樞";return "多功能球員"}
-function generatePlayer(){try{var style=E("style").value;var p={id:playerId++,name:E("name").value.trim()||"Player",age:16,pos:E("pos").value,hand:E("hand").value,height:Number(E("height").value),weight:Number(E("weight").value),wingspan:Number(E("wingspan").value),body:E("body").value,league:"HBL",style:style,titles:0,mvp:0,seasons:0,skills:{}};var base=randInt(52,70);var k;for(k in skillNames){p.skills[k]=clamp(base+randInt(-10,12),35,88)}if(style==="handler"){p.skills.handle+=10;p.skills.pass+=9;p.skills.iq+=5}if(style==="shooter"){p.skills.three+=12;p.skills.mid+=7}if(style==="defender"){p.skills.defense+=12;p.skills.interior+=6;p.skills.strength+=4}if(style==="big"){p.skills.interior+=12;p.skills.rebound+=10;p.skills.pass+=4}p.skills.interior=clamp(p.skills.interior+Math.round((p.height-195)/3),25,95);p.skills.rebound=clamp(p.skills.rebound+Math.round((p.wingspan-p.height)/3),25,95);p.skills.handle=clamp(p.skills.handle-Math.max(0,Math.round((p.height-208)/4)),25,95);p.skills.strength=clamp(p.skills.strength+Math.round((p.weight-90)/5),25,95);for(k in p.skills){p.skills[k]=clamp(p.skills[k],25,95)}roster.push(p);renderRoster()}catch(err){alert("生成球員失敗："+err.message)}}
-function renderRoster(){var box=E("generatedPlayers");if(!roster.length){box.innerHTML="<div class='small'>尚未生成球員。</div>";return}var html="";for(var i=0;i<roster.length;i++){var p=roster[i];html+="<div class='player-card'><div class='player-head'><div><div class='player-name'>"+p.name+"</div><div class='small'>16歲｜HBL｜"+p.pos+"｜"+p.height+"cm｜"+p.weight+"kg｜臂展 "+p.wingspan+"cm｜"+archetype(p)+"</div></div><div class='score'>"+achievementScore(p)+"</div></div><div class='small' style='margin:7px 0'>OVR "+overall(p)+"｜成就分數 "+achievementScore(p)+"</div><button class='primary' onclick='startCareer("+p.id+")'>開始人生</button></div>"}box.innerHTML=html}
-function startCareer(id){try{var base=null;for(var i=0;i<roster.length;i++){if(roster[i].id===id){base=roster[i];break}}if(!base){alert("找不到球員");return}current=JSON.parse(JSON.stringify(base));current.seed=E("seed").value.trim()||"DEFAULT";current.eventUsed={};current.log=[];eventRand=mulberry32(hashSeed(current.seed));E("setupView").classList.add("hidden");E("careerView").classList.remove("hidden");addLog("🏁 <b>"+current.name+"</b> 以 16 歲身分從 HBL 開始籃球人生。");addLog("事件 Seed：<b>"+current.seed+"</b>。");renderCareer()}catch(err){alert("開始人生失敗："+err.message)}}
-function addLog(text){current.log.unshift(text);var h="";for(var i=0;i<current.log.length;i++){h+="<p>"+current.log[i]+"</p>"}E("careerLog").innerHTML=h}
-var events=[{id:"family",chance:8,text:"家中出現需要投入時間處理的狀況。",run:function(){current.skills.speed=clamp(current.skills.speed-1,25,99);return "忙碌影響訓練，速度 -1。"}},{id:"role",chance:8,text:"教練希望你嘗試新的持球角色。",run:function(){var r=d100();if(r<=55){current.skills.handle=clamp(current.skills.handle+2,25,99);current.skills.pass=clamp(current.skills.pass+2,25,99);if(current.pos==="SF"||current.pos==="PF")current.pos="PG / "+current.pos;return "🎲 "+r+"，轉型成功，控球 +2、傳球 +2。"}return "🎲 "+r+"，轉型失敗。"}},{id:"conflict",chance:5,text:"你與隊友爆發休息室衝突。",run:function(){var r=d100();return r<=50?"🎲 "+r+"，衝突被控制住。":"🎲 "+r+"，事件延燒。"}},{id:"public",chance:4,text:"一場尷尬花邊事件在社群爆紅。",run:function(){var r=d100();if(r<=40){current.skills.iq=clamp(current.skills.iq+1,25,99);return "🎲 "+r+"，你把壓力轉成專注，籃球 IQ +1。"}return "🎲 "+r+"，短期狀態受到影響。"}},{id:"brawl",chance:1,text:"比賽爆發大規模場邊衝突。",run:function(){var r=d100();return r<=45?"🎲 "+r+"，你成功遠離衝突。":"🎲 "+r+"，你被捲入事件並遭處分。"}}];
-function maybeEvent(){for(var i=0;i<events.length;i++){var e=events[i];if(!current.eventUsed[e.id]&&eventRand()*100<e.chance){current.eventUsed[e.id]=true;addLog("<span class='violet'>特殊事件｜"+e.text+"</span><br>"+e.run());return}}}
-function simulateSeason(){if(!current){alert("尚未開始人生");return}current.seasons++;current.age++;var keys=Object.keys(current.skills);var k=keys[Math.floor(eventRand()*keys.length)];var r=d100();if(r<=55){current.skills[k]=clamp(current.skills[k]+1,25,99)}if(r<=6){current.skills[k]=clamp(current.skills[k]+2,25,99)}var titleRoll=d100();if(titleRoll<=8){current.titles++;addLog("🏆 HBL 冠軍｜🎲 "+titleRoll)}var mvpRoll=d100();if(mvpRoll<=3){current.mvp++;addLog("🌟 HBL MVP｜🎲 "+mvpRoll)}maybeEvent();addLog("<span class='blue'>"+current.age+"歲｜第 "+current.seasons+" 季結束</span>｜OVR "+overall(current)+"｜成就分數 "+achievementScore(current));renderCareer()}
-function randomTrain(){if(!current){alert("尚未開始人生");return}var keys=Object.keys(current.skills);var k=keys[Math.floor(eventRand()*keys.length)];var r=d100();var before=current.skills[k];if(r<=70){current.skills[k]=clamp(current.skills[k]+1,25,99)}if(r<=10){current.skills[k]=clamp(current.skills[k]+2,25,99)}addLog("訓練 "+skillNames[k]+"｜<span class='dice'>🎲 "+r+"</span>｜"+before+" → "+current.skills[k]);renderCareer()}
-function renderCareer(){E("careerTitle").textContent=current.name+"｜"+current.age+"歲｜HBL";E("careerOVR").textContent=overall(current);var chipData=[current.pos,current.height+"cm",current.weight+"kg","臂展 "+current.wingspan+"cm",archetype(current),"Seed "+current.seed];var chips="";for(var i=0;i<chipData.length;i++){chips+="<span class='chip'>"+chipData[i]+"</span>"}E("careerChips").innerHTML=chips;var h="";for(var k in current.skills){h+="<div class='stat'><span class='small'>"+skillNames[k]+"</span><b>"+current.skills[k]+"</b><div class='bar'><div class='fill' style='width:"+current.skills[k]+"%'></div></div></div>"}E("careerStats").innerHTML=h}
-function backToSetup(){E("careerView").classList.add("hidden");E("setupView").classList.remove("hidden");renderRoster()}
-</script>
-</body>
-</html>
+var roster=[],current=null,playerId=1,eventRand=Math.random;
+var names={finish:'終結',mid:'中距離',three:'三分',ft:'罰球',handle:'控球',pass:'傳球',defense:'外線防守',interior:'內線防守',rebound:'籃板',speed:'速度',strength:'力量',iq:'籃球IQ'};
+function E(x){return document.getElementById(x)}function clamp(x,a,b){return Math.max(a,Math.min(b,x))}function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a}function avg(a){var s=0;for(var i=0;i<a.length;i++)s+=a[i];return s/a.length}
+function hash(s){var h=2166136261>>>0;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}function d100(){return Math.floor(eventRand()*100)+1}
+function ovr(p){var s=p.skills;return Math.round(avg([s.finish,s.mid,s.three,s.handle,s.pass,s.defense,s.interior,s.rebound,s.speed,s.strength,s.iq]))}function score(p){return Math.round(ovr(p)*.8+(p.hblTitles||0)*18+(p.hblMvp||0)*16+(p.hblAwards||0)*5)}
+function type(p){var s=p.skills,h=p.height;if(h>=215&&s.handle>=78&&s.three>=78&&s.interior>=78)return'獨角獸';if(h>=205&&s.pass>=82&&s.iq>=82&&s.rebound>=74)return'全能組織長人';if(h>=198&&s.handle>=82&&s.pass>=80)return'控球前鋒';if(s.three>=82&&s.defense>=80)return'3&D';if(s.pass>=86&&s.handle>=84)return'進攻發動機';if(s.interior>=86&&s.rebound>=84)return'護框中樞';return'多功能球員'}
+function generatePlayer(){var p={id:playerId++,name:E('name').value.trim()||'Player',pos:E('pos').value,height:+E('height').value,weight:+E('weight').value,wingspan:+E('wingspan').value,body:E('body').value,hand:E('hand').value,style:E('style').value,grade:1,age:16,hblTitles:0,hblMvp:0,hblAwards:0,skills:{}};var base=ri(50,67),k;for(k in names)p.skills[k]=clamp(base+ri(-9,11),32,86);if(p.style==='handler'){p.skills.handle+=9;p.skills.pass+=8;p.skills.iq+=5}if(p.style==='shooter'){p.skills.three+=11;p.skills.mid+=7;p.skills.ft+=5}if(p.style==='defender'){p.skills.defense+=10;p.skills.interior+=6;p.skills.rebound+=4}if(p.style==='big'){p.skills.interior+=11;p.skills.rebound+=9;p.skills.pass+=4}p.skills.interior+=Math.round((p.height-195)/3);p.skills.rebound+=Math.round((p.wingspan-p.height)/3);p.skills.strength+=Math.round((p.weight-90)/5);if(p.height>208)p.skills.handle-=Math.round((p.height-208)/4);for(k in p.skills)p.skills[k]=clamp(p.skills[k],25,94);roster.push(p);renderRoster()}
+function renderRoster(){if(!roster.length){E('players').innerHTML='<div class="small">尚未生成球員。</div>';return}var h='';for(var i=0;i<roster.length;i++){var p=roster[i];h+='<div class="player"><div class="head"><div><div class="name">'+p.name+'</div><div class="small">'+p.pos+'｜'+p.height+'cm｜'+p.weight+'kg｜臂展 '+p.wingspan+'cm｜'+type(p)+'</div></div><div class="score">'+score(p)+'</div></div><div class="small" style="margin:7px 0">OVR '+ovr(p)+'｜HBL 高一｜成就分數 '+score(p)+'</div><button class="primary" onclick="start('+p.id+')">開始人生</button></div>'}E('players').innerHTML=h}
+function start(id){var b=null;for(var i=0;i<roster.length;i++)if(roster[i].id===id)b=roster[i];if(!b)return;current=JSON.parse(JSON.stringify(b));current.seed=E('seed').value.trim()||'DEFAULT';current.used={};current.log=[];current.pending=false;eventRand=mulberry32(hash(current.seed));E('setup').classList.add('hidden');E('career').classList.remove('hidden');addLog('🏁 <b>'+current.name+'</b> 從 HBL 高一開始人生。');addLog('事件 Seed：<b>'+current.seed+'</b>。');renderCareer()}
+function addLog(x){current.log.unshift(x);E('log').innerHTML=current.log.map(function(a){return'<p>'+a+'</p>'}).join('')}
+var events=[{id:'coach_role',chance:10,text:'教練臨時增加你的持球任務。',run:function(){var r=d100();if(r<=60){current.skills.handle=clamp(current.skills.handle+2,25,99);current.skills.pass=clamp(current.skills.pass+2,25,99);if(current.pos==='SF'||current.pos==='PF')current.pos='PG / '+current.pos;return'🎲 '+r+'，適應成功，控球 +2、傳球 +2。'}return'🎲 '+r+'，適應不佳，位置維持不變。'}},{id:'family',chance:7,text:'家庭因素讓你一段時間無法完整訓練。',run:function(){current.skills.speed=clamp(current.skills.speed-1,25,99);return'體能訓練受影響，速度 -1。'}},{id:'viral',chance:5,text:'一個場外小插曲意外在社群爆紅。',run:function(){var r=d100();if(r<=45){current.skills.iq=clamp(current.skills.iq+1,25,99);return'你沒有被影響，反而更專注。籃球 IQ +1。'}return'短期注意力被打亂，但能力沒有永久下降。'}},{id:'conflict',chance:3,text:'比賽中出現嚴重衝突。',run:function(){var r=d100();return r<=55?'你成功保持冷靜，沒有遭到重大處分。':'你被捲入事件，該季角色與聲望受到影響。'}}];
+function triggerEvent(){for(var i=0;i<events.length;i++){var e=events[i];if(!current.used[e.id]&&eventRand()*100<e.chance){current.used[e.id]=true;addLog('<span class="violet">特殊事件｜'+e.text+'</span><br>'+e.run());return e.text}}return'本季沒有重大特殊事件'}
+function focusPool(f){if(f==='handle')return['handle','pass','iq'];if(f==='shoot')return['three','mid','ft'];if(f==='physical')return['speed','strength','finish'];if(f==='defense')return['defense','interior','rebound'];return Object.keys(current.skills)}
+function chooseFocus(f){if(current.pending)return;current.pending=true;var pool=focusPool(f),changes=[];for(var n=0;n<3;n++){var k=pool[Math.floor(eventRand()*pool.length)],before=current.skills[k],chance=clamp(82-(before-50)*.9+(current.grade===1?7:current.grade===2?3:0),8,94),r=d100(),gain=0;if(r<=5)gain=3;else if(r<=chance)gain=1+(r<=20?1:0);current.skills[k]=clamp(before+gain,25,99);changes.push(names[k]+' '+before+'→'+current.skills[k]+'（🎲'+r+' / '+Math.round(chance)+'）')}
+var effective=ovr(current)+(current.grade-1)*1.5;var role=effective>=80?'球隊核心':effective>=72?'先發主力':effective>=64?'輪替球員':'替補';var mpg=role==='球隊核心'?31:role==='先發主力'?26:role==='輪替球員'?18:10;var ppg=Math.max(2,((current.skills.finish+current.skills.three+current.skills.mid)/3-35)*.28*(mpg/24));var apg=Math.max(.5,(current.skills.pass-35)*.10*(mpg/24));var rpg=Math.max(.5,(current.skills.rebound-35)*.11*(mpg/24));var titleRoll=d100(),mvpRoll=d100(),title=titleRoll<=10+Math.max(0,effective-72)*.5,mvp=mvpRoll<=Math.max(1,(effective-78)*.6);if(title){current.hblTitles++;addLog('🏆 <b>HBL 冠軍</b>｜🎲 '+titleRoll)}if(mvp){current.hblMvp++;addLog('🌟 <b>HBL MVP</b>｜🎲 '+mvpRoll)}if(!mvp&&effective>=75&&d100()<=30){current.hblAwards++;addLog('⭐ 入選 HBL 個人獎項 / 最佳陣容')}
+var ev=triggerEvent();var label=current.grade===1?'高一':current.grade===2?'高二':'高三';addLog('<span class="blue">'+label+' 賽季結束</span>｜'+role+'｜'+ppg.toFixed(1)+' PTS / '+rpg.toFixed(1)+' REB / '+apg.toFixed(1)+' AST');E('seasonSummary').innerHTML='<div class="note"><b>'+label+'｜'+role+'</b><br>'+ppg.toFixed(1)+' PTS　'+rpg.toFixed(1)+' REB　'+apg.toFixed(1)+' AST<br><br>'+changes.join('<br>')+'<br><br>事件：'+ev+'</div>';E('choiceCard').classList.add('hidden');E('resultCard').classList.remove('hidden');if(current.grade===3){E('continueBtn').textContent='完成 HBL 生涯';}renderCareer()}
+function continueCareer(){if(current.grade>=3){addLog('<span class="green">🎓 HBL 三年生涯完成。</span>　成就分數 '+score(current));E('continueBtn').disabled=true;E('continueBtn').textContent='HBL 階段已完成';return}current.grade++;current.age++;current.pending=false;E('resultCard').classList.add('hidden');E('choiceCard').classList.remove('hidden');renderCareer();addLog('➡️ 進入 HBL '+(current.grade===2?'高二':'高三')+'。')}
+function renderCareer(){var g=current.grade===1?'高一':current.grade===2?'高二':'高三';E('stage').textContent='HBL '+g;E('careerTitle').textContent=current.name+'｜'+current.age+'歲';E('ovr').textContent=ovr(current);E('chips').innerHTML=[current.pos,current.height+'cm',current.weight+'kg','臂展 '+current.wingspan+'cm',type(current),'Seed '+current.seed].map(function(x){return'<span class="chip">'+x+'</span>'}).join('');var h='';for(var k in current.skills)h+='<div class="stat"><span class="small">'+names[k]+'</span><b>'+current.skills[k]+'</b><div class="bar"><div class="fill" style="width:'+current.skills[k]+'%"></div></div></div>';E('stats').innerHTML=h}
+function backSetup(){E('career').classList.add('hidden');E('setup').classList.remove('hidden');renderRoster()}
+</script></div></body></html>
